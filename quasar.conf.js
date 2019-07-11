@@ -25,7 +25,7 @@ module.exports = function (ctx) {
       // analyze: true,
       // extractCSS: false,
       // useNotifier: false,
-      publicPath: '/ihm-intra/',
+      publicPath: '/',
       extendWebpack (cfg) {
         cfg.module.rules.push({
           enforce: 'pre',
@@ -37,7 +37,7 @@ module.exports = function (ctx) {
     },
     devServer: {
       // https: true,
-      port: 3080,
+      port: 80,
       open: false, // opens browser window automatically
       watchOptions: {
         poll: true,
