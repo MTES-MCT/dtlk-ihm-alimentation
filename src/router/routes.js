@@ -22,13 +22,6 @@ export default [
       { path: 'account', name: 'myaccount', component: () => import('pages/MyAccount') }
     ]
   },
-  {
-    path: '/explore',
-    component: () => import('layouts/MyPanel'),
-    children: [
-      { path: '', name: 'explore', component: () => import('pages/Explore') }
-    ]
-  },
   { // Always leave this as last one
     path: '*',
     component: () => import('pages/404')

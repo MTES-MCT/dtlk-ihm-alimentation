@@ -47,11 +47,11 @@
         </q-alert>
       </div>
       <div class="col-xs-12 cols-sm-12 col-md-6 col-lg-4">
-        <q-alert class="mybox cursor-pointer" color="light" icon="mdi-file-tree" @click.native="$router.push({name: 'explore'})" >
-          <div class="q-title">Parcourir le Datalake</div>
-          <div class="q-caption">Voir l'ensemble des jeux de données du Datalake</div>
+        <a href="http://statistiques.metier.e2.rie.gouv.fr/le-systeme-d-information-r311.html">
+        <q-alert class="mybox cursor-pointer" color="light" icon="mdi-file-tree"  >
+          <div class="q-title">Accéder à la documentation du datalake</div>
           <div class="q-display-1"></div>
-        </q-alert>
+        </q-alert></a>
       </div>
     </div>
 
@@ -91,4 +91,8 @@ export default {
   @extend .text-bold
   /deep/ .q-chip-floating
     right -1.3em
+
+a
+  text-decoration none
+
 </style>
