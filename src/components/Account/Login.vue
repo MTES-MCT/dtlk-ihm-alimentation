@@ -1,5 +1,5 @@
 <template>
-  <q-modal v-model="hasSessionInactive" no-route-dismiss no-esc-dismiss no-backdrop-dismiss>
+  <q-modal v-model="hasSessionInactive" no-route-dismiss no-esc-dismiss no-backdrop-dismiss :content-css="{minWidth: '350px'}">
     <q-modal-layout>
       <q-toolbar slot="header" class="text-bold" color="secondary">
         <img src="statics/user.png">
@@ -20,10 +20,6 @@
             <q-btn outline icon="mdi-account-key" color="secondary" size="md" type="submit" label="Se connecter" title="Me connecter à l'application" />
           </div>
         </form>
-        <div v-if="$router.currentRoute.name === 'login'" class="row q-mt-md">
-          <q-btn flat color="secondary" size="sm" @click="$router.push({name: 'forgottenpassword'})" label="J'ai oublié mon mot de passe" title="J'ai oublié mon mot de passe" />
-          <q-btn flat color="secondary" size="sm" @click="$router.push({name: 'askaccount'})" label="Je n'ai pas de compte" title="Je n'ai pas de compte" />
-        </div>
       </div>
     </q-modal-layout>
   </q-modal>
