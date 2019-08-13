@@ -116,8 +116,8 @@ export default {
       return this.$store.state.mydatasets.list.find(dataset => dataset.id === this.job.data.dataset_id)
     },
     type () {
-      if (this.job.data.task === 'addDatafileMillesime') return 'Ajout d\'une nouvelle millesime d\'un fichier de données'
-      if (this.job.data.task === 'replaceDatafileMillesime') return 'Remplacement d\'une millesime d\'un fichier de données'
+      if (this.job.data.task === 'addDatafileMillesime') return 'Ajout d\'un nouveau millesime d\'un fichier de données'
+      if (this.job.data.task === 'replaceDatafileMillesime') return 'Remplacement d\'un millesime d\'un fichier de données'
       if (this.job.data.task === 'createDatafile') return 'Ajout d\'un nouveau fichier de données'
     },
     status () {

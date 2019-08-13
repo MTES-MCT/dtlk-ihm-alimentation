@@ -3,7 +3,7 @@
     <q-modal-layout class="modalLayout">
       <q-toolbar slot="header" color="secondary" class="text-bold">
         <q-toolbar-title class="row items-center">
-          <q-icon class="on-left" name="mdi-pencil" />Ajout d'une nouvelle millesime d'un fichier de données
+          <q-icon class="on-left" name="mdi-pencil" />Ajout d'un nouveau millesime d'un fichier de données
         </q-toolbar-title>
         <q-btn flat @click="opened = false"><q-icon name="mdi-close-outline" /></q-btn>
       </q-toolbar>
@@ -11,7 +11,7 @@
         <div class="bg-secondary text-white text-small q-mb-xl q-pa-md">
           <div class="q-mb-sm"><span class="text-bold on-left">Jeu de données :</span>{{dataset.title}}</div>
           <div class="q-mb-sm"><span class="text-bold on-left">Fichier de données :</span>{{datafile.title}}</div>
-          <div><span class="text-bold on-left">Nouvelle millesime à ajouter :</span>{{datafile.millesimes + 1}}</div>
+          <div><span class="text-bold on-left">Nouveau millesime à ajouter :</span>{{datafile.millesimes + 1}}</div>
         </div>
         <q-field icon="mdi-menu-right" :error="$v.tokenFile.$error" error-label="Vous devez envoyer un fichier">
           <file-upload-api v-model="tokenFile" :formSuccess="formSuccess" label="Fichier" extensions=".csv" :isDatafile="true" />

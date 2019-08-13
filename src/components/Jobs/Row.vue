@@ -33,10 +33,10 @@ export default {
         text = `Ajout du fichier de données ${this.job.data.datafile_metadata.title} dans le jeu de donnée identifié par ${this.job.data.dataset_id}`
       }
       if (this.job.data.task === 'replaceDatafileMillesime') {
-        text = `Remplacement de la millesime ${this.job.data.datafile_millesime} du fichier de données ${this.job.data.datafile_rid} dans le jeu de donnée  ${this.job.data.dataset_id}`
+        text = `Remplacement du millesime ${this.job.data.datafile_millesime} du fichier de données ${this.job.data.datafile_rid} dans le jeu de donnée  ${this.job.data.dataset_id}`
       }
       if (this.job.data.task === 'addDatafileMillesime') {
-        text = `Ajout d'une millesime au fichier de données ${this.job.data.datafile_rid} dans le jeu de donnée  ${this.job.data.dataset_id}`
+        text = `Ajout d'un millesime au fichier de données ${this.job.data.datafile_rid} dans le jeu de donnée  ${this.job.data.dataset_id}`
       }
       return text
     }

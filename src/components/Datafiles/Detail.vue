@@ -36,7 +36,7 @@
               <q-item-main class="text-small">
                 <q-item-tile v-if="infoMillesimes.length > 1" label>Millesime {{millesime.number}}</q-item-tile>
                 <q-item-tile sublabel>{{millesime.rows}} lignes et {{millesime.columns.length}} colonnes</q-item-tile>
-                <q-item-tile sublabel><a :href="millesime.url" title="Lien internet de la millesime du fichier de données">{{millesime.url}}</a></q-item-tile>
+                <q-item-tile sublabel><a :href="millesime.url" title="Lien internet du millesime du fichier de données">{{millesime.url}}</a></q-item-tile>
               </q-item-main>
             </q-item>
           </template>

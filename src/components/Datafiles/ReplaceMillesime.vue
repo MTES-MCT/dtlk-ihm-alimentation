@@ -11,7 +11,7 @@
         <div class="bg-secondary text-white text-small q-mb-xl q-pa-md">
           <div class="q-mb-sm"><span class="text-bold on-left">Jeu de données :</span>{{dataset.title}}</div>
           <div class="q-mb-sm"><span class="text-bold on-left">Fichier de données :</span>{{datafile.title}}</div>
-          <div><span class="text-bold on-left">Millesime remplacée :</span>{{millesime}}</div>
+          <div><span class="text-bold on-left">Millesime remplacé :</span>{{millesime}}</div>
         </div>
         <q-field icon="mdi-menu-right" :error="$v.tokenFile.$error" error-label="Vous devez envoyer un fichier">
           <file-upload-api v-model="tokenFile" :formSuccess="formSuccess" label="Fichier" extensions=".csv" :isDatafile="true" />

@@ -86,15 +86,15 @@ export default {
       if (log.type === 'create_dataset') return `Création du jeu de données ${log.dataset.title}`
       if (log.type === 'add_attachment') return `Ajout du fichier descriptif ${log.attachment.title}`
       if (log.type === 'add_datafile') return `Ajout du fichier de données ${log.datafile.title}`
-      if (log.type === 'add_datafile_millesime') return `Ajout de la millesime ${log.datafile.millesime} du fichier de données ${log.datafile.title}`
+      if (log.type === 'add_datafile_millesime') return `Ajout du millesime ${log.datafile.millesime} du fichier de données ${log.datafile.title}`
       if (log.type === 'update_dataset_metadata') return `Mis-à-jour du jeu de données ${log.dataset.title}`
       if (log.type === 'update_attachment_metadata') return `Mise-à-jour des métadonnées du fichier descriptif ${log.attachment.title}`
       if (log.type === 'update_attachment_file') return `Remplacement du fichier descriptif ${log.attachment.title}`
       if (log.type === 'update_datafile_metadata') return `Mise-à-jour des métadonnées du fichier de données ${log.datafile.title}`
-      if (log.type === 'update_datafile_millesime') return `Remplacement de la millesime ${log.datafile.millesime} du fichier de données ${log.datafile.title}`
+      if (log.type === 'update_datafile_millesime') return `Remplacement du millesime ${log.datafile.millesime} du fichier de données ${log.datafile.title}`
       if (log.type === 'delete_dataset') return `Suppression du jeu de données ${log.dataset.title}`
       if (log.type === 'delete_attachment') return `Suppression du fichier descriptif ${log.attachment.title}`
-      if (log.type === 'delete_datafile_millesime') return `Suppression de la millesime ${log.datafile.millesime} du fichier de données ${log.datafile.title}`
+      if (log.type === 'delete_datafile_millesime') return `Suppression du millesime ${log.datafile.millesime} du fichier de données ${log.datafile.title}`
       if (log.type === 'delete_datafile') return `Suppression du fichier de données ${log.datafile.title}`
     },
     displayDate (log) {
