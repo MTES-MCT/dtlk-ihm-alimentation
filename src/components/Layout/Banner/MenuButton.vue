@@ -30,10 +30,12 @@
               <q-item-main label="Mon compte" sublabel="Administrer mon compte" />
             </q-item>
             <q-item-separator />
-            <q-item v-if="$route.name !== 'explore'" @click.native="[$refs.popovermenu.hide(), $router.push({name: 'explore'})]" class="cursor-pointer" title="Explorer le datalake">
-              <q-item-side icon="mdi-file-tree" />
-              <q-item-main label="Explorer le Datalake" />
+            <a href="http://statistiques.metier.e2.rie.gouv.fr/le-systeme-d-information-r311.html" >
+            <q-item v-if="$route.name !== 'explore'" @click.native="[$refs.popovermenu.hide()]" class="cursor-pointer" title="Accéder à la documentation du datalake" >
+                <q-item-side icon="mdi-file-tree" />
+                <q-item-main label="Accéder à la documentation du datalake" />
             </q-item>
+            </a>
             <q-item-separator v-if="$route.name !== 'explore'" />
             <q-item @click.native="$router.push({name: 'logout'})" class="cursor-pointer">
               <q-item-side icon="mdi-logout" />
@@ -65,4 +67,7 @@ export default {
   min-height 61px
 .listMenu
   min-width 200px
+a
+  text-decoration none
+  color #cf641c
 </style>
