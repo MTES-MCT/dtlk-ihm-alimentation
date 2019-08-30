@@ -178,14 +178,14 @@ export const replaceDatafileMillesime = async ({ commit, dispatch, state, rootGe
   return result
 }
 
-export const removeDatafileLastMillesime = async ({ commit, rootGetters }, payload) => {
-  commit('setPendingStateAction', { action: 'deleteLastMillesimeDatafile', dataset: payload.dataset, datafile: payload.datafile })
-  let result = await api.deletedatafilemillesime(rootGetters['auth/apiKey'], payload.dataset.id, payload.datafile.rid, payload.datafile.millesimes)
-    .then(() => commit('deleteLastMillesimeDatafile', { dataset: payload.dataset, datafile: payload.datafile }))
-    .then(() => commit('removeJobs', { type: 'datafileMillesime', datasetId: payload.dataset.id, datafileRid: payload.datafile.rid, datafileMillesime: payload.datafile.millesimes }))
-    .then(() => myNotify.success('La dernière millesime du fichier de données a bien été supprimée.'))
+export const removeDatafileMillesime = async ({ commit, rootGetters }, payload) => {
+  commit('setPendingStateAction', { action: 'deleteMillesimeDatafile', dataset: payload.dataset, datafile: payload.datafile })
+  let result = await api.deletedatafilemillesime(rootGetters['auth/apiKey'], payload.dataset.id, payload.datafile.rid, payload.millesimeToRemove)
+    .then(() => commit('deleteMillesimeDatafile', { dataset: payload.dataset, datafile: payload.datafile, datafileMillesime: payload.millesimeToRemove }))
+    .then(() => commit('removeJobs', { type: 'datafileMillesime', datasetId: payload.dataset.id, datafileRid: payload.datafile.rid, datafileMillesime: payload.millesimeToRemove }))
+    .then(() => myNotify.success('Le millesime ' + payload.millesimeToRemove + ' du fichier de données a bien été supprimée.'))
     .catch(error => myNotify.error(error))
-    .finally(() => commit('unsetPendingStateAction', { action: 'deleteLastMillesimeDatafile', dataset: payload.dataset, datafile: payload.datafile }))
+    .finally(() => commit('unsetPendingStateAction', { action: 'deleteMillesimeDatafile', dataset: payload.dataset, datafile: payload.datafile }))
   return result
 }
 

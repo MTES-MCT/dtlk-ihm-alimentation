@@ -75,6 +75,9 @@ export default {
     published () {
       return date.formatDate(new Date(this.datafile.published), 'DD MMMM YYYY')
     },
+    millesime () {
+      return this.datafile.millesimes_info.millesime
+    },
     temporal_coverage_start () {
       return (this.datafile.temporal_coverage && this.datafile.temporal_coverage.start) ? date.formatDate(new Date(this.datafile.temporal_coverage.start), 'DD MMMM YYYY') : null
     },

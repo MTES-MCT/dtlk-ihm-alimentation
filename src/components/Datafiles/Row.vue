@@ -65,7 +65,7 @@
               <q-item-side icon="mdi-cloud-sync" />
               <template v-if="datafile.millesimes === 1">
                 <q-item-main >
-                  <q-item-tile label @click.native="[$refs.popoverDatafile.hide(), openReplaceMillesimeDatafile(1)]">Remplacer le fichier</q-item-tile>
+                  <q-item-tile label @click.native="[$refs.popoverDatafile.hide(), openReplaceMillesimeDatafile(millesimes[0])]">Remplacer le fichier</q-item-tile>
                 </q-item-main>
               </template>
               <template v-else>
@@ -75,21 +75,31 @@
                 <q-item-side right icon="mdi-menu-down" />
                 <q-popover ref="popoverDatafileMillesimes" anchor="bottom right" self="top right">
                   <q-list link dense class="no-border">
-                    <q-item dense class="q-caption" v-for="millesime of millesimes" :key="millesime.number" @click.native="[$refs.popoverDatafileMillesimes.hide(), openReplaceMillesimeDatafile(millesime.number)]">
+                    <q-item dense class="q-caption" v-for="millesime of millesimes" :key="millesime" @click.native="[$refs.popoverDatafileMillesimes.hide(), openReplaceMillesimeDatafile(millesime)]">
                       <q-item-main>
-                        <q-item-tile label>millesime {{millesime.number}}</q-item-tile>
+                        <q-item-tile label>millesime {{millesime}}</q-item-tile>
                       </q-item-main>
                     </q-item>
                   </q-list>
                 </q-popover>
               </template>
             </q-item>
-            <q-item-separator />
-            <q-item dense class="q-caption" v-if="datafile.millesimes > 1" @click.native="[$refs.popoverDatafile.hide(), confirmLastMillesimeDeletion()]">
-              <q-item-side color="negative" icon="mdi-delete" />
-              <q-item-main>
-                <q-item-tile color="negative" label>Supprimer le dernièr millesime du fichier de données</q-item-tile>
-              </q-item-main>
+            <q-item-separator/>
+            <q-item dense class="q-caption" v-if="datafile.millesimes > 1">
+                <q-item-side color="negative" icon="mdi-delete" />
+                <q-item-main>
+                  <q-item-tile color="negative" label>Supprimer un millesime du fichier de données</q-item-tile>
+                </q-item-main>
+                <q-item-side right color="negative" icon="mdi-menu-down" />
+                <q-popover ref="popoverDatafileMillesimes" anchor="bottom right" self="top right">
+                      <q-list link dense class="no-border">
+                        <q-item dense class="q-caption" v-for="millesime of millesimes" :key="millesime" @click.native="[$refs.popoverDatafileMillesimes.hide(), confirmLastMillesimeDeletion(millesime)]">
+                          <q-item-main>
+                            <q-item-tile label>millesime {{millesime}}</q-item-tile>
+                          </q-item-main>
+                        </q-item>
+                      </q-list>
+                </q-popover>
             </q-item>
             <q-item dense class="q-caption" @click.native="[$refs.popoverDatafile.hide(), confirmDeletion()]">
               <q-item-side color="negative" icon="mdi-delete" />
@@ -121,7 +131,11 @@ export default {
   },
   computed: {
     millesimes () {
-      return [...Array(this.datafile.millesimes)].map((u, i) => { return {number: i + 1} }).reverse()
+      let listMillesime = this.datafile.millesimes_info.reduce((accumulatorMillesimes, currentMillesime) => {
+        accumulatorMillesimes.push(currentMillesime.millesime)
+        return accumulatorMillesimes
+      }, [])
+      return listMillesime.sort()
     },
     textMillesimeInProgress () {
       if (this.datafile.jobinprogress) {
@@ -160,16 +174,16 @@ export default {
       if (job.data.task === 'replaceDatafileMillesime') return `erreur lors du remplacement du millesime ${job.data.datafile_millesime}`
       if (job.data.task === 'addDatafileMillesime') return `erreur lors de l'ajout du millesime ${job.data.datafile_millesime}`
     },
-    async confirmLastMillesimeDeletion () {
+    async confirmLastMillesimeDeletion (millesime) {
       try {
         await this.$q.dialog({
           title: 'Demande de confirmation',
           color: 'secondary',
-          message: 'Vous allez supprimer définitivement le dernièr millesime du fichier de données. Êtes-vous sûr ?',
+          message: 'Vous allez supprimer définitivement le millesime ' + millesime + ' du fichier de données. Êtes-vous sûr ?',
           ok: 'Oui',
           cancel: 'Non, annuler !!'
         })
-        await this.$store.dispatch('mydatasets/removeDatafileLastMillesime', { dataset: this.dataset, datafile: this.datafile })
+        await this.$store.dispatch('mydatasets/removeDatafileMillesime', { dataset: this.dataset, datafile: this.datafile, millesimeToRemove: millesime })
       } catch (e) {}
     },
     async confirmDeletion () {

@@ -34,7 +34,12 @@
         <q-field icon="mdi-menu-right">
           <q-input color="secondary" v-model="legal_notice" stack-label="Source à mentionner" type="textarea" :rows="3" />
         </q-field>
-        <br><br>
+        <br>
+        <br>
+        <q-field icon="mdi-menu-right">
+          <q-datetime color="secondary" v-model="millesime" stack-label="Millésime du fichier" type="date" monday-first format="YYYY-MM" />
+        </q-field>
+        <br>
         <q-field icon="mdi-menu-right" :error="$v.tokenFile.$error" error-label="Vous devez envoyer un fichier">
           <file-upload-api v-model="tokenFile" :formSuccess="formSuccess" label="Fichier" extensions=".csv" :isDatafile="true" />
         </q-field>
@@ -69,6 +74,7 @@ export default {
       temporal_coverage_end: '',
       legal_notice: '',
       tokenFile: null,
+      millesime: new Date(),
       formSuccess: false
     }
   },
@@ -92,7 +98,9 @@ export default {
         title: this.title,
         description: this.description,
         published: this.published,
-        tokenFile: this.tokenFile
+        tokenFile: this.tokenFile,
+        millesime: this.millesime
+
       }
       if (this.temporal_coverage_end && this.temporal_coverage_start) {
         data.temporal_coverage_end = this.temporal_coverage_end
@@ -143,6 +151,9 @@ export default {
     },
     tokenFile: {
       required
+    },
+    millesime: {
+      required
     }
   },
   methods: {
@@ -158,6 +169,7 @@ export default {
       this.temporal_coverage_end = ''
       this.legal_notice = ''
       this.tokenFile = null
+      this.millesime = new Date()
       this.$v.$reset()
     },
     async submit () {

@@ -11,8 +11,12 @@
         <div class="bg-secondary text-white text-small q-mb-xl q-pa-md">
           <div class="q-mb-sm"><span class="text-bold on-left">Jeu de données :</span>{{dataset.title}}</div>
           <div class="q-mb-sm"><span class="text-bold on-left">Fichier de données :</span>{{datafile.title}}</div>
-          <div><span class="text-bold on-left">Nouveau millesime à ajouter :</span>{{datafile.millesimes + 1}}</div>
         </div>
+        <br>
+        <q-field icon="mdi-menu-right">
+          <q-datetime color="secondary" v-model="millesime" stack-label="Millésime du fichier" type="date" monday-first format="YYYY-MM" />
+        </q-field>
+        <br>
         <q-field icon="mdi-menu-right" :error="$v.tokenFile.$error" error-label="Vous devez envoyer un fichier">
           <file-upload-api v-model="tokenFile" :formSuccess="formSuccess" label="Fichier" extensions=".csv" :isDatafile="true" />
         </q-field>
@@ -41,6 +45,7 @@ export default {
   data () {
     return {
       tokenFile: null,
+      millesime: new Date(),
       formSuccess: false
     }
   },
@@ -62,11 +67,20 @@ export default {
     pending () {
       return this.datafile ? this.datafile.pending_update : false
     },
-    formDatafile () { return { tokenFile: this.tokenFile } }
+    formDatafile () {
+      let data = {
+        tokenFile: this.tokenFile,
+        millesime: this.millesime
+      }
+      return data
+    }
   },
   created () {},
   validations: {
     tokenFile: {
+      required
+    },
+    millesime: {
       required
     }
   },
@@ -77,6 +91,7 @@ export default {
     onhide () {
       console.log('close')
       this.tokenFile = null
+      this.millesime = new Date()
       this.$v.$reset()
     },
     async submit () {

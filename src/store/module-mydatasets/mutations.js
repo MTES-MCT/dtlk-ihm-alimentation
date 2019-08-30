@@ -177,6 +177,17 @@ export const deleteLastMillesimeDatafile = (state, { dataset, datafile }) => {
   setTimeout(() => (dataset.datafiles[idxDatafile].notify_update = false), 2000)
 }
 
+// commit for removing last datafile millesime
+export const deleteMillesimeDatafile = (state, { dataset, datafile, datafileMillesime }) => {
+  let idxDatafile = dataset.datafiles.indexOf(datafile)
+  let millesimeInfo = dataset.datafiles[idxDatafile].millesimes_info.find(millesime => millesime === datafileMillesime)
+  let idxMillesime = dataset.datafiles[idxDatafile].millesimes_info.indexOf(millesimeInfo)
+  dataset.datafiles[idxDatafile].millesimes = dataset.datafiles[idxDatafile].millesimes - 1
+  dataset.datafiles[idxDatafile].millesimes_info.splice(idxMillesime, 1)
+  dataset.datafiles[idxDatafile].notify_update = true
+  setTimeout(() => (dataset.datafiles[idxDatafile].notify_update = false), 2000)
+}
+
 // commit for removing datafile
 export const deleteDatafile = (state, { dataset, datafile }) => {
   let idxDatafile = dataset.datafiles.indexOf(datafile)
