@@ -30,7 +30,7 @@
               <q-item-main label="Mon compte" sublabel="Administrer mon compte" />
             </q-item>
             <q-item-separator />
-            <a href="http://statistiques.metier.e2.rie.gouv.fr/le-systeme-d-information-r311.html" >
+            <a href="http://statistiques.metier.e2.rie.gouv.fr/documentation-r553.html" >
             <q-item v-if="$route.name !== 'explore'" @click.native="[$refs.popovermenu.hide()]" class="cursor-pointer" title="Accéder à la documentation du datalake" >
                 <q-item-side icon="mdi-file-tree" />
                 <q-item-main label="Accéder à la documentation du datalake" />
