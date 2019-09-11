@@ -135,7 +135,7 @@ export default {
         accumulatorMillesimes.push(currentMillesime.millesime)
         return accumulatorMillesimes
       }, [])
-      return listMillesime.sort()
+      return listMillesime
     },
     textMillesimeInProgress () {
       if (this.datafile.jobinprogress) {
