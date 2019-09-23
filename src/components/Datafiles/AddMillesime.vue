@@ -37,7 +37,7 @@
 import { validationMixin } from 'vuelidate'
 import { required } from 'vuelidate/lib/validators'
 import FileUploadApi from 'components/FormElements/FileUploadApi'
-
+import moment from 'moment-timezone'
 export default {
   name: 'datafiles-add-millesime',
   mixins: [validationMixin],
@@ -45,7 +45,7 @@ export default {
   data () {
     return {
       tokenFile: null,
-      millesime: new Date(),
+      millesime: moment(new Date()).format('YYYY-MM'),
       formSuccess: false
     }
   },
@@ -70,7 +70,7 @@ export default {
     formDatafile () {
       let data = {
         tokenFile: this.tokenFile,
-        millesime: this.millesime
+        millesime: moment(this.millesime).format('YYYY-MM')
       }
       return data
     }
@@ -91,7 +91,7 @@ export default {
     onhide () {
       console.log('close')
       this.tokenFile = null
-      this.millesime = new Date()
+      this.millesime = moment(new Date()).format('YYYY-MM')
       this.$v.$reset()
     },
     async submit () {

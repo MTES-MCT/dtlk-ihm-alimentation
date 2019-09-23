@@ -37,7 +37,7 @@
         <br>
         <br>
         <q-field icon="mdi-menu-right">
-          <q-datetime color="secondary" v-model="millesime" stack-label="Millésime du fichier" type="date" monday-first format="YYYY-MM" />
+          <q-datetime color="secondary" v-model="millesime" stack-label="Millésime du fichier" type="date" monday-first format="YYYY-MM" @blur="$v.millesime.$touch"/>
         </q-field>
         <br>
         <q-field icon="mdi-menu-right" :error="$v.tokenFile.$error" error-label="Vous devez envoyer un fichier">
@@ -60,6 +60,7 @@
 import { validationMixin } from 'vuelidate'
 import { required, requiredIf } from 'vuelidate/lib/validators'
 import FileUploadApi from 'components/FormElements/FileUploadApi'
+import moment from 'moment-timezone'
 
 export default {
   name: 'datafiles-add',
@@ -74,7 +75,7 @@ export default {
       temporal_coverage_end: '',
       legal_notice: '',
       tokenFile: null,
-      millesime: new Date(),
+      millesime: moment(new Date()).format('YYYY-MM'),
       formSuccess: false
     }
   },
@@ -99,7 +100,7 @@ export default {
         description: this.description,
         published: this.published,
         tokenFile: this.tokenFile,
-        millesime: this.millesime
+        millesime: moment(this.millesime).format('YYYY-MM')
 
       }
       if (this.temporal_coverage_end && this.temporal_coverage_start) {
@@ -169,7 +170,7 @@ export default {
       this.temporal_coverage_end = ''
       this.legal_notice = ''
       this.tokenFile = null
-      this.millesime = new Date()
+      this.millesime = moment(new Date()).format('YYYY-MM')
       this.$v.$reset()
     },
     async submit () {
