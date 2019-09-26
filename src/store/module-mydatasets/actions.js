@@ -185,7 +185,7 @@ export const removeDatafileMillesime = async ({ commit, rootGetters }, payload) 
     .then(() => commit('removeJobs', { type: 'datafileMillesime', datasetId: payload.dataset.id, datafileRid: payload.datafile.rid, datafileMillesime: payload.millesimeToRemove }))
     .then(() => myNotify.success('Le millesime ' + payload.millesimeToRemove + ' du fichier de données a bien été supprimée.'))
     .catch(error => myNotify.error(error))
-    .finally(() => commit('unsetPendingStateAction', { action: 'deleteMillesimeDatafile', dataset: payload.dataset, datafile: payload.datafile }))
+    .finally(() => commit('unsetPendingStateAction', { action: 'deleteMillesimeDatafile', dataset: payload.dataset, datafile: payload.datafile, datafileMillesime: payload.millesimeToRemove }))
   return result
 }
 
