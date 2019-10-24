@@ -47,7 +47,7 @@
         </q-alert>
       </div>
       <div class="col-xs-12 cols-sm-12 col-md-6 col-lg-4">
-        <a href="http://statistiques.metier.e2.rie.gouv.fr/le-systeme-d-information-r311.html">
+        <a href="http://statistiques.metier.e2.rie.gouv.fr/documentation-r553.html">
           <q-alert class="mybox cursor-pointer" color="light" icon="mdi-file-tree"  >
             <div class="q-title">Accéder à la documentation du datalake</div>
             <div class="q-display-1"></div>
