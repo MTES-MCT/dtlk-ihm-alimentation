@@ -14,7 +14,9 @@
         </div>
         <br>
         <q-field icon="mdi-menu-right">
-          <q-datetime color="secondary" v-model="millesime" stack-label="Millésime du fichier" type="date" monday-first format="YYYY-MM" />
+          <q-input color="secondary" v-model="millesime" stack-label="Millésime du fichier" type="textarea" class="mydisabled-q-input"/>
+          <br>
+          <vue-monthly-picker selectedBackgroundColor="#cf641c" v-model="millesime" alignment="center" dateFormat="YYYY-MM"></vue-monthly-picker>
         </q-field>
         <br>
         <q-field icon="mdi-menu-right" :error="$v.tokenFile.$error" error-label="Vous devez envoyer un fichier">
@@ -38,15 +40,21 @@ import { validationMixin } from 'vuelidate'
 import { required } from 'vuelidate/lib/validators'
 import FileUploadApi from 'components/FormElements/FileUploadApi'
 import moment from 'moment-timezone'
+import VueMonthlyPicker from 'vue-monthly-picker'
 export default {
   name: 'datafiles-add-millesime',
   mixins: [validationMixin],
-  components: { FileUploadApi },
+  components: { FileUploadApi, VueMonthlyPicker },
   data () {
     return {
       tokenFile: null,
       millesime: moment(new Date()).format('YYYY-MM'),
       formSuccess: false
+    }
+  },
+  watch: {
+    millesime () {
+      this.millesime = moment(this.millesime).format('YYYY-MM')
     }
   },
   computed: {
@@ -116,4 +124,6 @@ export default {
   @extend .text-bold
 .contentModal /deep/ .q-input-target
   @extend .q-caption, .text-secondary, .q-mt-xs
+.mydisabled-q-input /deep/ .q-input-target
+  @extend .disabled
 </style>
