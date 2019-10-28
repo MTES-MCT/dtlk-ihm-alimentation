@@ -14,9 +14,8 @@
         </div>
         <br>
         <q-field icon="mdi-menu-right">
-          <q-input color="secondary" v-model="millesime" stack-label="Millésime du fichier" type="textarea" class="mydisabled-q-input"/>
-          <br>
-          <vue-monthly-picker selectedBackgroundColor="#cf641c" v-model="millesime" alignment="center" dateFormat="YYYY-MM"></vue-monthly-picker>
+          <div class="labelCalendrier">Millésime du fichier</div>
+          <vue-monthly-picker selectedBackgroundColor="#cf641c" v-model="millesime" alignment= "center" dateFormat="YYYY-MM"></vue-monthly-picker>
         </q-field>
         <br>
         <q-field icon="mdi-menu-right" :error="$v.tokenFile.$error" error-label="Vous devez envoyer un fichier">
@@ -124,6 +123,15 @@ export default {
   @extend .text-bold
 .contentModal /deep/ .q-input-target
   @extend .q-caption, .text-secondary, .q-mt-xs
-.mydisabled-q-input /deep/ .q-input-target
-  @extend .disabled
+</style>
+
+<style lang="stylus">
+  .month-year-display.input
+    border-radius: 30px !important;
+  .labelCalendrier
+    font-size: 0.75rem;
+    transform: translate(0, -100%);
+    line-height: 9px;
+    font-weight: bold;
+    color: #979797;
 </style>

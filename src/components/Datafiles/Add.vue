@@ -37,7 +37,8 @@
         <br>
         <br>
         <q-field icon="mdi-menu-right">
-          <q-datetime color="secondary" v-model="millesime" stack-label="Millésime du fichier" type="date" monday-first format="YYYY-MM" @blur="$v.millesime.$touch"/>
+          <div class="labelCalendrier">Millésime du fichier</div>
+          <vue-monthly-picker selectedBackgroundColor="#cf641c" v-model="millesime" alignment= "center" dateFormat="YYYY-MM" @blur="$v.millesime.$touch"></vue-monthly-picker>
         </q-field>
         <br>
         <q-field icon="mdi-menu-right" :error="$v.tokenFile.$error" error-label="Vous devez envoyer un fichier">
@@ -61,11 +62,12 @@ import { validationMixin } from 'vuelidate'
 import { required, requiredIf } from 'vuelidate/lib/validators'
 import FileUploadApi from 'components/FormElements/FileUploadApi'
 import moment from 'moment-timezone'
+import VueMonthlyPicker from 'vue-monthly-picker'
 
 export default {
   name: 'datafiles-add',
   mixins: [validationMixin],
-  components: { FileUploadApi },
+  components: { FileUploadApi, VueMonthlyPicker },
   data () {
     return {
       title: '',
@@ -197,4 +199,14 @@ export default {
   @extend .q-caption, .text-secondary, .q-mt-xs
 .labelTemporalCoverage
   font-size 0.75rem
+</style>
+<style lang="stylus">
+  .month-year-display.input
+    border-radius: 30px !important;
+  .labelCalendrier
+    font-size: 0.75rem;
+    transform: translate(0, -100%);
+    line-height: 9px;
+    font-weight: bold;
+    color: #979797;
 </style>
