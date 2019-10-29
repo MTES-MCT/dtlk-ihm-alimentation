@@ -73,9 +73,9 @@
                   <q-item-tile label>Remplacer le fichier d'un millesime</q-item-tile>
                 </q-item-main>
                 <q-item-side right icon="mdi-menu-down" />
-                <q-popover ref="popoverDatafileMillesimes" anchor="bottom right" self="top right">
+                <q-popover ref="popoverListeMillesimes" anchor="bottom right" self="top right">
                   <q-list link dense class="no-border">
-                    <q-item dense class="q-caption" v-for="millesime of millesimes" :key="millesime" @click.native="[$refs.popoverDatafileMillesimes.hide(), openReplaceMillesimeDatafile(millesime)]">
+                    <q-item dense class="q-caption" v-for="millesime of millesimes" :key="millesime"  @click.native="[$refs.popoverListeMillesimes.hide(), openReplaceMillesimeDatafile(millesime)]">
                       <q-item-main>
                         <q-item-tile label>millesime {{millesime}}</q-item-tile>
                       </q-item-main>
