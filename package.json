@@ -1,6 +1,6 @@
 {
   "name": "dlk-ihm-intra",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "IHM for datalake integration",
   "productName": "Datalake IHM Intra",
   "cordovaId": "org.cordova.quasar.app",
