@@ -1,0 +1,27 @@
+{
+  "name": "docker-quasar",
+  "version": "1.0.0",
+  "description": "Quasar in docker container",
+  "productName": "Quasar in docker container",
+  "cordovaId": "org.cordova.quasar.app",
+  "author": "Christophe BARRIERE <christophebarriere@free.fr>",
+  "private": true,
+  "scripts": {
+    "lint": "eslint --ext .js,.vue src",
+    "test": "echo \"No test specified\" && exit 0"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "quasar-cli": "^0.17",
+    "quasar-framework": "^0.17"
+  },
+  "engines": {
+    "node": ">= 8.9.0",
+    "npm": ">= 5.6.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 10"
+  ]
+}
