@@ -25,18 +25,16 @@ RUN node node_modules/quasar-cli/bin/quasar build
 # Runtime stage
 FROM nginx:1.17.6 as release
 LABEL maintainer="Datalake Team" description="Docker image for Datalake IHM intra"
-RUN mkdir -p /www/ihm-intra
-COPY --from=build /generator/dist/spa-mat /www/ihm-intra
+RUN mkdir -p /www/
+COPY --from=build /generator/dist/spa-mat /www/
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
 
-FROM build as audit
+FROM release as audit
 USER root
-RUN apk add --no-cache ca-certificates && update-ca-certificates
+RUN apt-get update && apt-get -y install ca-certificates
 ADD https://get.aquasec.com/microscanner /
 RUN chmod +x /microscanner
 ARG token
 RUN /microscanner NTZiYmRjOTdlNTEw --continue-on-failure
-run yarn audit
-
