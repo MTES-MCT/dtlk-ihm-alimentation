@@ -88,7 +88,9 @@ module.exports = function (ctx) {
         'QProgress',
         'QUploader',
         'QAlert',
-        'QTree'
+        'QTree',
+        'QCheckbox',
+        'QTooltip'
       ],
       directives: [
         'Ripple'

@@ -21,7 +21,7 @@
         </q-field>
         <br>
         <q-field icon="mdi-menu-right" :error="$v.published.$error" error-label="Le champ est requis et doit être une date valide">
-          <q-datetime color="secondary" v-model="published" stack-label="Date de publication du fichier" type="date" monday-first format="DD MMMM YYYY" @input="$v.description.$touch" />
+          <q-datetime color="secondary" v-model="published" stack-label="Date de publication du fichier" type="date" monday-first format="DD MMMM YYYY" @input="$v.published.$touch" />
         </q-field>
         <br>
         <q-field icon="mdi-menu-right" :error="$v.temporal_coverage_start.$error || $v.temporal_coverage_end.$error" error-label="Vous devez remplir les deux dates, la date de fin devant être supérieure à la date de début.">
