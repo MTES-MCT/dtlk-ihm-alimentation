@@ -25,10 +25,15 @@ RUN node node_modules/quasar-cli/bin/quasar build
 # Runtime stage
 FROM nginx:1.17.6 as release
 LABEL maintainer="Datalake Team" description="Docker image for Datalake IHM intra"
+# entrypoint replace apiUrl:".*?" by apiUrl:"$API_URL" in all js files
+# API_URL is declared in the environment section of docker-compose file
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
 RUN mkdir -p /www/
 COPY --from=build /generator/dist/spa-mat /www/
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
+ENTRYPOINT [ "/usr/local/bin/entrypoint.sh" ]
 CMD ["nginx", "-g", "daemon off;"]
 
 FROM release as audit
